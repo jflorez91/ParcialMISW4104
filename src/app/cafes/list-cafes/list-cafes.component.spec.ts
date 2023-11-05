@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from "@angular/common/http/testing"
+import { HttpClientModule } from "@angular/common/http";
+import { CafesService } from 'src/app/services/cafes.service';
 import { ListCafesComponent } from './list-cafes.component';
 import { Cafe } from '../Cafe';
 
@@ -10,6 +12,8 @@ describe('ListCafesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ListCafesComponent ]
+      ,imports : [HttpClientTestingModule, HttpClientModule]
+      ,providers: [CafesService]
     })
     .compileComponents();
   });
@@ -17,7 +21,6 @@ describe('ListCafesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListCafesComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -38,6 +41,8 @@ describe('ListCafesComponent', () => {
     const table = fixture.nativeElement.querySelector('table');
     const headerRow = table.querySelector('thead tr');
     const bodyRows = table.querySelectorAll('tbody tr');
+
+    console.log(bodyRows.length);
 
     expect(table).toBeTruthy();
     expect(headerRow).toBeTruthy();
